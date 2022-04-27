@@ -1,17 +1,14 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response } from 'express';
+import recRouter from './routes/recommendation';
+import chatRouter from './routes/recommendation';
 
 const app = express();
 
-app.get('/welcome', (req: Request, res: Response, next: NextFunction) => {
+app.get('/welcome', (req: Request, res: Response) => {
   res.send('welcome!');
 });
 
+app.use('/recommendation', recRouter);
+app.use('/chat', chatRouter);
 
-app.listen('8000', () => {
-  console.log(`
-  ################################################
-  🎉 Server listening on port: 8000 
-  🎉 http://localhost:8000
-  ################################################
-`);
-});
+export default app;
